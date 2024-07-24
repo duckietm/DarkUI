@@ -1,6 +1,7 @@
 import { FC, MouseEvent, useEffect, useState } from 'react';
 import { Overlay, Popover } from 'react-bootstrap';
 import { Base, Flex, Grid, NitroCardContentView } from '../../../../common';
+import { FaCommentDots } from "react-icons/fa";
 
 interface ChatInputStyleSelectorViewProps
 {
@@ -44,9 +45,7 @@ export const ChatInputStyleSelectorView: FC<ChatInputStyleSelectorViewProps> = p
 
     return (
         <>
-            <div className='nitro-chat-bubble-icon-container nitro-pointer' onClick={ toggleSelector }>
-                <i className="fas fa-comment-alt-lines"></i>
-            </div>
+            <div className='nitro-chat-bubble-icon-container icon chatstyles-icon nitro-pointer' onClick={ toggleSelector }></div>
             <Overlay show={ selectorVisible } target={ target } placement="top">
                 <Popover className="nitro-chat-style-selector-container image-rendering-pixelated" style={{border: "0px !important"}}>
                     <NitroCardContentView overflow="hidden" className="nitro-tooltip-bg">
