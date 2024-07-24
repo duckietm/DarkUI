@@ -1,6 +1,7 @@
 import { GetGuestRoomResultEvent, ILinkEventTracker, NavigatorSearchComposer, RateFlatMessageComposer } from '@nitrots/nitro-renderer';
 import { useEffect, useState } from 'react';
-import { AddEventLinkTracker, CreateLinkEvent, GetRoomEngine, RemoveLinkEventTracker, SendMessageComposer } from '../../api';
+import { AddEventLinkTracker, CreateLinkEvent, GetRoomEngine, LocalizeText, RemoveLinkEventTracker, SendMessageComposer } from '../../api';
+import { FaCog, FaComments, FaSearch, FaRegThumbsUp } from "react-icons/fa";
 import { Flex, Text } from '../../common';
 import { useIsPlaying, useMessageEvent, useNavigator, useRoom } from '../../hooks';
 
@@ -13,17 +14,8 @@ const RoomWidgetsView = () =>
     const [ isOpen, setIsOpen ] = useState<boolean>(false);
     const { navigatorData = null } = useNavigator();
     const { roomSession = null } = useRoom();
-    const sso = new URLSearchParams(window.location.search).get('sso');
-    
-
-    // 
     const [ isVisible, setIsVisible ] = useState(true);
     const { isPlaying } = useIsPlaying();
-
-    function openBawTool()
-    {
-        fetch('https://int.habbe.es/?type=builderTool&sso='+sso);
-    }
 
     const handleToolClick = (action: string, value?: string) =>
     {
@@ -113,42 +105,13 @@ const RoomWidgetsView = () =>
             { isVisible && !!!isPlaying && roomName !== null &&
                 <Flex className='toolbar-room-info'>
                     <div className='toolbar-room-info-text'>
-                        <div className='mb-0'>
-                            <Text variant="white" bold>
-                                { roomName }
-                            </Text>
-                        </div>
-                        <div className='toolbar-room-info-description'>
-                            <Text variant="muted" small bold>
-                                Dueño: { roomOwner }
-                            </Text>
-                        </div>
+                        <div className='mb-0'> <Text wrap variant="white" fontSize={4} truncate>{roomName}</Text> </div>
+                        <div className='toolbar-room-info-description'> <Text variant="muted" fontSize={6} truncate>{ LocalizeText('navigator.filter.owner') }: {roomOwner}</Text> </div>
                         <div className="row mt-1">
-                            <div className='col-md-2'>
-                                <span className='badge bg-dark nitro-pointer' onClick={ () => handleToolClick('settings') }>
-                                    <i className="fas fa-cog"></i>
-                                </span>
-                            </div>
-                            <div className='col-md-2'>
-                                <span className='badge bg-dark nitro-pointer' onClick={ () => handleToolClick('zoom') }>
-                                    <i className="fas fa-search"></i>
-                                </span>
-                            </div>
-                            <div className='col-md-2'>
-                                <span className='badge bg-dark nitro-pointer' onClick={ () => handleToolClick('chat_history') }>
-                                    <i className="fas fa-comments"></i>
-                                </span>
-                            </div>
-                            <div className='col-md-2'>
-                                <span className='badge bg-dark nitro-pointer' onClick={ e => openBawTool() }>
-                                    <i className="fas fa-tools"></i>
-                                </span>
-                            </div>
-                            <div className='col-md-2'>
-                                <span className='badge bg-dark nitro-pointer' onClick={ () => handleToolClick('like_room') }>
-                                    <i className="fas fa-thumbs-up"></i>
-                                </span>
-                            </div>
+                            <div className='col-md-2'> <span className='badge bg-dark nitro-pointer' onClick={ () => handleToolClick('settings') }> <FaCog  className="fa-icon" /> </span> </div>
+                            <div className='col-md-2'> <span className='badge bg-dark nitro-pointer' onClick={ () => handleToolClick('zoom') }> <FaSearch  className="fa-icon" /> </span> </div>
+                            <div className='col-md-2'> <span className='badge bg-dark nitro-pointer' onClick={ () => handleToolClick('chat_history') }> <FaComments  className="fa-icon" /> </span> </div>
+                            <div className='col-md-2'> <span className='badge bg-dark nitro-pointer' onClick={ () => handleToolClick('like_room') }> <FaRegThumbsUp  className="fa-icon" /> </span> </div>
                         </div>
                     </div>
                 </Flex>
