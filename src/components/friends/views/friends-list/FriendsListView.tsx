@@ -13,12 +13,12 @@ import { FriendsListRequestView } from './friends-list-request/FriendsListReques
 export const FriendsListView: FC<{}> = props =>
 {
     const [isVisible, setIsVisible] = useState(false);
+	const [section, setSection] = useState("online");
     const [selectedFriendsIds, setSelectedFriendsIds] = useState<number[]>([]);
     const [showRoomInvite, setShowRoomInvite] = useState<boolean>(false);
     const [showRemoveFriendsConfirmation, setShowRemoveFriendsConfirmation] = useState<boolean>(false);
+	
     const { onlineFriends = [], offlineFriends = [], requests = [], requestFriend = null, requestResponse = null } = useFriends();
-
-    const [section, setSection] = useState("online");
 
     const removeFriendsText = useMemo(() =>
     {
@@ -125,26 +125,26 @@ export const FriendsListView: FC<{}> = props =>
     return (
         <>
             <NitroCardView className="nitro-friends" uniqueKey="nitro-friends">
-                <NitroCardHeaderView headerText="Firend Lits" onCloseClick={event => setIsVisible(false)} />
+                <NitroCardHeaderView headerText={LocalizeText('friendlist.friends')} onCloseClick={event => setIsVisible(false)} />
                 <NitroCardTabsView>
                     <NitroCardTabsItemView onClick={(e) => setSection("online")} isActive={section === "online" ? true : false}>
                         <Flex gap={0} alignItems="center">
-                            En linea
+                            {LocalizeText('friendlist.online')}
                         </Flex>
                     </NitroCardTabsItemView>
                     <NitroCardTabsItemView onClick={(e) => setSection("offline")} isActive={section === "offline" ? true : false}>
                         <Flex gap={0} alignItems="center">
-                            Desconectados
+                            {LocalizeText('friendlist.offline')}
                         </Flex>
                     </NitroCardTabsItemView>
                     <NitroCardTabsItemView onClick={(e) => setSection("requests")} isActive={section === "requests" ? true : false}>
                         <Flex gap={0} alignItems="center">
-                            Solicitudes
+                            {LocalizeText('friendlist.requests')}
                         </Flex>
                     </NitroCardTabsItemView>
                     <NitroCardTabsItemView onClick={(e) => setSection("search")} isActive={section === "search" ? true : false}>
                         <Flex gap={0} alignItems="center">
-                            Buscar
+                            {LocalizeText('generic.search')}
                         </Flex>
                     </NitroCardTabsItemView>
                 </NitroCardTabsView>
@@ -155,12 +155,12 @@ export const FriendsListView: FC<{}> = props =>
                             <div className="row mt-1 gx-1" style={{ marginLeft: "0px", marginRight: "0px", padding: "4px" }}>
                                 <div className='col-md-6'>
                                     <button onClick={() => setShowRoomInvite(true)} disabled={selectedFriendsIds && selectedFriendsIds.length > 0 ? false : true} className='btn w-100' style={{ backgroundColor: "var(--colors-secondary)" }}>
-                                        <img style={{ filter: "drop-shadow(0 0px 6px rgb(255,255,255))" }} src="https://2.bp.blogspot.com/-WZfVZfUX4H8/XK0oYoS0BtI/AAAAAAABOsg/6dam7awczkAUFOyBunIuuKKTPYcKp3TwACKgBGAs/s1600/user_plus.png" /> &nbsp; Invitar amigos
+                                        {LocalizeText('friendlist.tip.invite')}
                                     </button>
                                 </div>
                                 <div className='col-md-6'>
                                     <button onClick={event => setShowRemoveFriendsConfirmation(true)} disabled={selectedFriendsIds && selectedFriendsIds.length > 0 ? false : true} className={`btn w-100 btn-danger`}>
-                                        <img style={{ filter: "drop-shadow(0 0px 6px rgb(255,255,255))" }} src="https://1.bp.blogspot.com/-LRbP70GFQyA/X6DP5Hg8UuI/AAAAAAABe3k/x0uk5ZZteK0EFJdi6FBlBITgbGFHh5rrQCPcBGAsYHg/s0/1869__-446.png" /> &nbsp; Borrar amigos
+                                        {LocalizeText('friendlist.tip.remove')}
                                     </button>
                                 </div>
                             </div>
@@ -173,7 +173,7 @@ export const FriendsListView: FC<{}> = props =>
                             <div className="row mt-1 gx-1" style={{ marginLeft: "0px", marginRight: "0px", padding: "4px" }}>
                                 <div className='col-md-12'>
                                     <button onClick={event => setShowRemoveFriendsConfirmation(true)} disabled={selectedFriendsIds && selectedFriendsIds.length > 0 ? false : true} className={`btn w-100 btn-danger`}>
-                                        <img style={{ filter: "drop-shadow(0 0px 6px rgb(255,255,255))" }} src="https://1.bp.blogspot.com/-LRbP70GFQyA/X6DP5Hg8UuI/AAAAAAABe3k/x0uk5ZZteK0EFJdi6FBlBITgbGFHh5rrQCPcBGAsYHg/s0/1869__-446.png" /> &nbsp; Borrar amigos
+                                        {LocalizeText('friendlist.tip.remove')}
                                     </button>
                                 </div>
                             </div>
@@ -185,7 +185,7 @@ export const FriendsListView: FC<{}> = props =>
                         <div className="row mt-1 gx-1" style={{ marginLeft: "0px", marginRight: "0px", padding: "4px" }}>
                             <div className='col-md-12'>
                                 <button disabled={requests && requests.length > 0 ? false : true} onClick={event => requestResponse(-1, false)} className={`btn w-100 btn-danger`}>
-                                    <img style={{ filter: "drop-shadow(0 0px 6px rgb(255,255,255))" }} src="https://1.bp.blogspot.com/-LRbP70GFQyA/X6DP5Hg8UuI/AAAAAAABe3k/x0uk5ZZteK0EFJdi6FBlBITgbGFHh5rrQCPcBGAsYHg/s0/1869__-446.png" /> &nbsp; Rechazar todas las solicitudes
+                                    {LocalizeText('friendlist.tip.declineall')}
                                 </button>
                             </div>
                         </div>

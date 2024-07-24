@@ -274,23 +274,40 @@
     }
 }
 
+.nitro-chat-avatar-card-online{
+    background-color: #67B645;
+    border: 2px #919191 solid;
+	width: 58px;
+    height: 58px;
+    border-radius: 29px;
+	box-shadow:
+    0 0 10px 5px #0ff,
+    0 0 10px 5px #67B645,
+    0 0 20px 5px #000;
+}
+
 .nitro-chat-avatar-card{
-    background-color: rgba(24, 24, 24, 0.6);
-    border: 1px #363636 solid;
-    padding: 26px;
-    border-radius: 7px;
+    background-color: #383838;
+    border: 2px #919191 solid;
+	width: 58px;
+    height: 58px;
+    border-radius: 29px;
+	box-shadow:
+    0 0 10px 5px #0ff,
+    0 0 10px 5px #737373,
+    0 0 20px 5px #000;
 }
 
 .nitro-chat-avatar-image{
     position: absolute;
     top: 8px;
-    left: 14px;
+    left: 3px;
 }
 
 .nitro-chat-avatar-image-search{
     position: absolute;
-    top: 4px;
-    left: 8px;
+    top: 7px;
+    left: 10px;
 }
 
 .nitro-chat-avatar-card-feed{

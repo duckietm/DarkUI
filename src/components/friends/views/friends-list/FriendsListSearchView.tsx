@@ -83,7 +83,7 @@ export const FriendsSearchView: FC<FriendsSearchViewProps> = props =>
                                                 </div>
                                                 <div className='col-md-6'>
                                                     <div style={{ float: "right", marginTop: "13px" }}>
-                                                        <button className='btn btn-sm btn-muted' onClick={event => GetUserProfile(result.avatarId)} style={{ fontSize: "12px" }}>Perfil</button>
+                                                        <button className='btn btn-sm btn-muted' onClick={event => GetUserProfile(result.avatarId)} style={{ fontSize: "12px" }}>{LocalizeText('friendbar.request.profile')}</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -119,8 +119,8 @@ export const FriendsSearchView: FC<FriendsSearchViewProps> = props =>
                                                 </div>
                                                 <div className='col-md-6'>
                                                     <div style={{ float: "right", marginTop: "13px" }}>
-                                                        <button className='btn btn-sm btn-muted' onClick={event => GetUserProfile(result.avatarId)} style={{ fontSize: "12px" }}>Perfil</button>&nbsp;
-                                                        {canRequestFriend(result.avatarId) && <button className='btn btn-sm btn-muted' onClick={event => requestFriend(result.avatarId, result.avatarName)} style={{ fontSize: "12px" }}>Agregar</button>}
+                                                        <button className='btn btn-sm btn-muted m-1' onClick={event => GetUserProfile(result.avatarId)} style={{ fontSize: "12px" }}>{LocalizeText('friendbar.request.profile')}</button>;
+                                                        {canRequestFriend(result.avatarId) && <button className='btn btn-sm btn-muted' onClick={event => requestFriend(result.avatarId, result.avatarName)} style={{ fontSize: "12px" }}>{LocalizeText('friendbar.request.title')}</button>}
                                                     </div>
                                                 </div>
                                             </div>
