@@ -1,0 +1,27 @@
+.nitro-left-side {
+    position: absolute;
+    top: -6px;
+    left: 143px;
+    min-width: 270px;
+    max-width: 400px;
+    z-index: 100;
+}
+
+.nitro-left-side-button {
+    background-color: var(--test-galaxytwo) !important;
+}
+
+.nitro-left-side-button:hover {
+    animation: float 1s ease-in-out infinite;
+    background-color: var(--test-galaxy) !important;
+}
+
+@keyframes float {
+    0% {
+        transform: scale(1, 1);
+    } 50% {
+        transform: scale(1.1, 1.1);
+    } 100% {
+        transform: scale(1, 1);
+    }
+}

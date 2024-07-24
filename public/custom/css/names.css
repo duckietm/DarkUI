@@ -1,0 +1,14 @@
+@keyframes move {
+    to {
+        background-position-x: -100%;
+    }
+}
+
+@keyframes move-gradient {
+    from {
+        background-position-x: 100%;
+    }
+    to {
+        background-position-x: -100%;
+    }
+}

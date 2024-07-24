@@ -1,0 +1,198 @@
+.sidebar-navigation-icon {
+    transition: filter 0.2s ease-out;
+    filter: grayscale(1);
+
+    &:hover {
+        filter: grayscale(0);
+    }
+}
+
+.nitro-toolbar {
+    position: absolute;
+    bottom: 4px;
+    left: 0;
+    width: 100%;
+    height: $toolbar-height;
+    z-index: $toolbar-zindex;
+    pointer-events: all;
+
+    .icon-border {
+        border: 2px solid rgba(44, 45, 42, 255);
+    }
+
+    .icon-border-white {
+        border: 1px solid #fff;
+    }
+
+    .toolbar-room-info {
+        border-radius: 7px;
+        background-color: rgba(24, 24, 24, 0.6);
+        border: 1px #363636 solid;
+        padding: 8px;
+        height: 84px;
+        width: 200px;
+        margin-top: -18px;
+        position: relative;
+
+        .toolbar-room-info-text {
+            position: absolute;
+        }
+
+        .toolbar-room-info-description {
+            margin-top: -6px;
+        }
+    }
+
+    .nitro-toolbar-avatar-icon {
+        border: 1px #363636 solid;
+        border-radius: 7px;
+        background-color: rgba(24, 24, 24, 0.6);
+        padding: 26px;
+    }
+
+    .nitro-toolbar-main-icons {
+        border-radius: 7px;
+        background-color: rgba(24, 24, 24, 0.6);
+        border: 1px #363636 solid;
+        padding: 3px;
+    }
+
+    .nitro-toolbar-icon {
+        padding: 24px;
+    }
+
+    .nitro-space-left {
+        margin-left: 5px;
+    }
+
+    .nitro-space-right {
+        margin-right: 5px;
+    }
+
+    .nitro-toolbar-secondary {
+        border-radius: 7px;
+        background-color: rgba(24, 24, 24, 0.6);
+        border: 1px #363636 solid;
+        padding: 3px;
+    }
+
+    .nitro-toolbar-firstview {
+        margin-bottom: 26px;
+        padding-top: 2;
+        padding-bottom: 2;
+        padding-left: 10;
+        padding-right: 10;
+    }
+
+    .navigation-item {
+        position: relative;
+
+        &.item-avatar {
+            width: 66px;
+            height: 69px;
+            overflow: hidden;
+
+            .avatar-image {
+                margin-left: -1px;
+                margin-top: 25px;
+            }
+        }
+
+        &:hover {
+            -webkit-transform: translate(-1px, -1px);
+            transform: translate(-1px, -1px);
+            filter: drop-shadow(2px 2px 0 rgba($black, 0.8));
+        }
+
+        &.active,
+        &:active {
+            -webkit-transform: unset;
+            transform: unset;
+            filter: none;
+        }
+    }
+
+    #toolbar-chat-input-container {
+        max-width: 60vh;
+        width: 100%;
+
+        @include media-breakpoint-down(sm) {
+            width: 0px;
+            height: 0px;
+        }
+    }
+}
+
+.nitro-toolbar-me {
+    position: absolute;
+    bottom: 66px;
+    transform: translate(-50%, 0);
+    left: 50%;
+    z-index: $toolbar-memenu-zindex;
+    background: rgba(20, 20, 20, .95);
+    border: 1px solid #101010;
+    box-shadow: inset 2px 2px rgba(255, 255, 255, .1), inset -2px -2px rgba(255, 255, 255, .1);
+    border-radius: $border-radius;
+
+    .navigation-item {
+        transition: filter .2s ease-out;
+        filter: grayscale(1);
+
+        &:hover {
+            filter: grayscale(0) drop-shadow(2px 2px 0 rgba($black, 0.8));
+        }
+    }
+}
+
+.toolbar-icon-animation {
+    position: absolute;
+    object-fit: cover;
+    height: auto;
+    width: auto;
+    max-width: 120px;
+    max-height: 150px;
+    z-index: 500;
+    filter: drop-shadow(2px 1px 0 rgba($white, 1)) drop-shadow(-2px 1px 0 rgba($white, 1)) drop-shadow(0 -2px 0 rgba($white, 1));
+}
+
+.side-toolbar-upside {
+    top: 0;
+    position: absolute;
+    padding: 5px;
+    z-index: 999999;
+    margin-left: 9px;
+}
+
+.side-toolbar {
+    z-index: 999998;
+    position: absolute;
+    top: 50%;
+    margin-left: 51px;
+    transform: translate(-50%, -50%);
+
+    .side-toolbar-grid {
+        z-index: 999999;
+        position: relative;
+    }
+
+    .side-toolbar-container {
+        border-radius: 7px;
+        background-color: rgba(24, 24, 24, 0.6);
+        border: 1px #363636 solid;
+        padding: 3px;
+    }
+
+    .sidebar-navigation-icon {
+        transition: filter 0.2s ease-out;
+        filter: grayscale(1);
+
+        &:hover {
+            filter: grayscale(0);
+        }
+    }
+
+}
+
+.nitro-pointer {
+    cursor: pointer;
+}

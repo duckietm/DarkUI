@@ -1,0 +1,40 @@
+.nitro-loading {
+    position: relative;
+    background: #0b6395 url("https://1.bp.blogspot.com/-V7YCx4Y8BqE/VwLRisKYlnI/AAAAAAAAmkI/7E81k1mYq74RG2xUKDM-BNsYbYEMIVZ2QCPcB/s1600/wallpaper_campHabbo.png");
+    background-position: 30% 100%;
+	background-size: cover;
+    animation: kubbo-background 70s linear infinite;
+    z-index: 100;
+
+    .connecting-duck {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+        right: 0;
+        left: 0;
+        width: 300px;
+        height: 10px;
+		transform: scale(1.3);
+    }
+
+    .nitro-logo {
+        width: 47px;
+        height: 65px;
+        background: transparent url('https://assets.nitrodev.co/logos/react-loader.png') no-repeat center;
+        z-index: 1;
+    }
+}
+
+.advice-loading{
+    background-color: #eb5d49);
+    color: #fff;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+@keyframes kubbo-background{
+    to{
+        background-position: -340% 100%;
+    }
+}

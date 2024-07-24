@@ -1,0 +1,45 @@
+.nitro-loading {
+    position: relative;
+    background: #d76107 url("/src/assets/images/loading/background.gif");
+    animation: animatedBackground 7s ease-in-out infinite alternate;
+    background-position: 0%;
+    z-index: 100;
+}
+
+.nitro-loading-logo {
+    width: 191px;
+    height: 81px;
+    background-image: url("/src/assets/images/loading/logotype.png");
+}
+
+
+.advice-loading {
+    white-space: pre-line;
+    background-color: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgb(0 0 0 / 11%);
+    text-align: center;
+    padding: 0.5rem;
+    width: 33.333%;
+    border-radius: 0.25rem;
+    position: absolute;
+    bottom: 0;
+    margin: 1rem;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+}
+
+.advice-height {
+    padding-bottom: 6rem;
+}
+
+@keyframes animatedBackground {
+    from {
+        background-size: cover;
+        background-position: 50% 20%;
+    }
+
+    to {
+        background-size: cover;
+        background-position: 0% 0%;
+    }
+}

@@ -1,0 +1,102 @@
+.battlepass-card{
+    min-width: 955px !important;
+    width: 955px;
+    height: 587px;
+}
+
+@keyframes kubbo-background{
+    to{
+        background-position: -340% 100%;
+    }
+}
+
+
+.battlepass-user{
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    background: #0b6395 url("https://files.habboemotion.com/resources/images/website_backgrounds/inside%20(7).gif");
+    background-position: 30% 100%;
+    animation: kubbo-background 85s linear infinite;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.battlepass-user-circle{
+    background-color: rgba(223, 223, 223, 255);
+    padding: 10px;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+}
+
+.battlepass-reward{
+    border: 2px rgba(185, 192, 198, 255) solid;
+    background-color: rgba(207, 213, 218, 255);
+    width: 60px;
+    height: 60px;
+    border-radius: 3px;
+    margin: 0 auto;
+}
+
+.battlepass-reward-context{
+    text-align: center;
+    border-radius: 5px;
+    background-color: rgba(24, 24, 24, 0.6);
+    padding: 10px;
+    position: absolute;
+    color: #fff;
+    margin-top: -98px;
+    margin-left: 10px;
+    z-index: 9999999999;
+}
+
+.battlepass-reward-vip-badge{
+    position: absolute;
+    margin-left: -14px;
+    margin-top: -18px;
+}
+
+.battlepass-shadow{
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+.battlepass-quests-to-complete{
+    height: 93px;
+    overflow-y: auto;
+}
+
+.battlepass-quest-to-complete{
+    background-color: rgba(20, 20, 26, 255);
+    padding: 8px;
+    border-radius: 3px;
+    width: 98%;
+}
+
+.battlepass-rewards{
+    height: 237px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.battlepass-quests-categories{
+    background-color: rgba(20, 20, 26, 255);
+    padding: 8px;
+    border-radius: 3px;
+    width: 98%;
+    cursor: pointer;
+    height: 71px;
+}
+
+.battlepass-quests-categories:hover{
+    transform: scale(1.05, 1.05);
+    background-color: rgba(5, 5, 5, 255);
+}
+
+.battlepass-quests-category{
+    height: 226px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.battlepass-text-small{
+    font-size: 14px;
+}

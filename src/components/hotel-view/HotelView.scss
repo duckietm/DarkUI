@@ -1,0 +1,174 @@
+.nitro-hotel-view {
+    display: block;
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	color:#000;
+	
+	.avatar-image {
+		bottom: 12px;
+		left: 57px;
+		position: absolute;
+		z-index: 1;
+	}
+
+	.background {
+		top:0;
+		height: 100%;
+		width: 100%;
+		background-position: left;
+		background-repeat: repeat-y;
+	}
+
+	.drape {
+        width: 100%;
+        height: 100%;
+		left: 0px;
+		top: 0;
+		animation-iteration-count: 1;
+		animation-name: slideDown;
+		animation-duration: 1s;
+		z-index: 3;
+        background-repeat: no-repeat;
+	}
+
+	.sun {
+        width: 100%;
+        height: 100%;
+		top: 0;
+		left: 0;
+		right: 0;
+		margin: auto;
+        background-repeat: no-repeat;
+		background-position: top center;
+	}
+
+	.left {
+        top:0;
+		right:0;
+		bottom: 0;
+		left: 0;
+		animation-iteration-count: 1;
+		animation-name: slideUp;
+		animation-duration: 1s;
+        background-repeat: no-repeat;
+		background-position: left bottom;
+	}
+
+	.right {
+        width: 100%;
+        height: 100%;
+		right: 0;
+		bottom: 0;
+		animation-iteration-count: 1;
+		animation-name: slideUp;
+		animation-duration: 1s;
+        background-repeat: no-repeat;
+		background-position: right bottom;
+	}
+
+	.right-repeat {
+        width: 100%;
+        height: 100%;
+		right: 0;
+		top: 0;
+        background-repeat: no-repeat;
+		background-position: right top;
+	}
+
+	.landing-widgets {
+		z-index: 9;
+		position: relative;
+
+	}
+
+	.widget-slot {
+		z-index: 9;	
+	}
+
+	hr {
+		background: $black;
+		box-shadow: 0 1px rgba($white,.5);
+		opacity: 0.5
+	}
+}
+
+@keyframes cloudLeft {
+    0% {
+        background-position: left calc(100% + 273px) bottom -297px
+    }
+
+    to {
+        background-position: left 0 bottom 5px
+    }
+}
+
+@keyframes carLeft {
+    0% {
+        background-position: left calc(100% + 100px) bottom -268px
+    }
+
+    to {
+        background-position: left 0 bottom -2px
+    }
+}
+
+@keyframes cloudRight {
+    0% {
+        background-position: left -934px bottom -871px
+    }
+
+    to {
+        background-position: left -330px bottom -1173px
+    }
+}
+
+.lulz {
+	margin: 0;
+	padding: 0;
+}
+
+.landing-view {
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	background-color: #202224;
+}
+
+.landing-view .left {
+	height: 1260px;
+	width: 1260px;
+	position: absolute;
+	bottom: 0px;
+	left: 0px;
+	background-image: url(https://cdn.discordapp.com/attachments/873588752252026920/1019121104113106944/landingtest2.png);
+	background-position: bottom left;
+	background-repeat: no-repeat;
+	animation-iteration-count:1;
+	animation-name:slideUp;
+	animation-duration:1.5s;
+}
+.landing-view .right {
+	height: 463px;
+	width: 526px;
+	position: absolute;
+	bottom: 0px;
+	right: 0px;
+	background-position: bottom right;
+	background-repeat: no-repeat;
+}
+.landing-view .drape {
+	height: 200px;
+	width: 145px;
+	position: absolute;
+	top: 0px;
+	left: 100px;
+	background-image: url(https://bobbax.fr/storage/img/hotel_view/reception_logo_drape.png);
+	background-position: bottom left;
+	background-repeat: no-repeat;
+	animation-iteration-count:1;
+	animation-name:slideDown;
+	animation-duration:1.5s;
+}
+
+@import './views/widgets/HotelViewWidgets';
