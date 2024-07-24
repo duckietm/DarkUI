@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { GetUserProfile, MessengerRequest } from '../../../../../api';
-import { Text } from '../../../../../common';
+import { Text, UserProfileIconView } from '../../../../../common';
 import { useFriends } from '../../../../../hooks';
 
 export const FriendsListRequestItemView: FC<{ request: MessengerRequest }> = props =>
@@ -17,7 +17,7 @@ export const FriendsListRequestItemView: FC<{ request: MessengerRequest }> = pro
                     <div className='col-md-3'>
                         <div onClick={event => GetUserProfile(request.id)}>
                             <div className="nitro-chat-avatar-card">
-                                <img className="nitro-chat-avatar-image" src={`https://imager.bobba.chat/?figure=${request.figureString}&direction=4&head_direction=4&headonly=1`} />
+                                <UserProfileIconView userId={ request.id } />
                             </div>
                         </div>
                     </div>

@@ -439,6 +439,12 @@
         width: 12px;
         height: 22px;
     }
+	
+	&.icon-search {
+        background: url('@/assets/images/icons/search.png');
+        width: 20px;
+        height: 22px;
+    }
 
     &.icon-zoom-less {
         background: url('@/assets/images/icons/zoom-less.png');

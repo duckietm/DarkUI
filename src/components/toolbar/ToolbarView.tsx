@@ -1,6 +1,6 @@
 import { Dispose, DropBounce, EaseOut, ILinkEventTracker, JumpBy, Motions, NitroToolbarAnimateIconEvent, PerkAllowancesMessageEvent, PerkEnum, Queue, Wait } from '@nitrots/nitro-renderer';
 import { FC, useEffect, useState } from 'react';
-import { AddEventLinkTracker, CreateLinkEvent, GetSessionDataManager, MessengerIconState, OpenMessengerChat, RemoveLinkEventTracker } from '../../api';
+import { AddEventLinkTracker, CreateLinkEvent, GetSessionDataManager, LocalizeText, MessengerIconState, OpenMessengerChat, RemoveLinkEventTracker } from '../../api';
 import { Base, Flex, LayoutItemCountView, Text, TransitionAnimation, TransitionAnimationTypes } from '../../common';
 import { useAchievements, useFriends, useInventoryUnseenTracker, useIsPlaying, useMessageEvent, useMessenger, useRoomEngineEvent, useSessionInfo } from '../../hooks';
 import RoomWidgetsView from './RoomWidgetsView';
@@ -122,7 +122,7 @@ export const ToolbarView: FC<{ isInRoom: boolean }> = props =>
                                     <div className='text-center' style={{marginRight: "15px"}}>
                                         <Base pointer className="navigation-item icon icon-camera nitro-toolbar-icon nitro-space-left nitro-space-right sidebar-navigation-icon" onClick={event => CreateLinkEvent('camera/toggle')} />
                                         <div className='w-100 text-center'>
-                                            <Text variant="white" small bold center>Cámara</Text>
+                                            <Text variant="white" small bold center>{ LocalizeText('room.camera.button.text') }</Text>
                                         </div>
                                     </div>
                                 }
@@ -139,9 +139,7 @@ export const ToolbarView: FC<{ isInRoom: boolean }> = props =>
                                         {(requests.length > 0) &&
                                             <LayoutItemCountView count={requests.length} />}
                                     </Base>
-                                    <div className='w-100 text-center'>
-                                        <Text variant="white" small bold center>Amigos</Text>
-                                    </div>
+                                    <div className='w-100 text-center'> <Text variant="white" small bold center>{ LocalizeText('friendlist.friends') }</Text> </div>
                                 </div>
                             </Flex>
                             <Base id="toolbar-friend-bar-container" className="d-none d-lg-block nitro-space-right" />

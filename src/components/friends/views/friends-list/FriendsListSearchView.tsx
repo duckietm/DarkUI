@@ -1,13 +1,8 @@
 import { HabboSearchComposer, HabboSearchResultData, HabboSearchResultEvent } from '@nitrots/nitro-renderer';
 import { FC, useEffect, useState } from 'react';
 import { GetUserProfile, LocalizeText, SendMessageComposer } from '../../../../api';
-import { Column, NitroCardAccordionSetViewProps, Text } from '../../../../common';
+import { Column, LayoutAvatarImageView, NitroCardAccordionSetViewProps, Text, UserProfileIconView } from '../../../../common';
 import { useFriends, useMessageEvent } from '../../../../hooks';
-
-interface FriendsSearchViewProps extends NitroCardAccordionSetViewProps
-{
-
-}
 
 export const FriendsSearchView: FC<FriendsSearchViewProps> = props =>
 {
@@ -15,8 +10,9 @@ export const FriendsSearchView: FC<FriendsSearchViewProps> = props =>
     const [searchValue, setSearchValue] = useState('');
     const [friendResults, setFriendResults] = useState<HabboSearchResultData[]>(null);
     const [otherResults, setOtherResults] = useState<HabboSearchResultData[]>(null);
-    const { canRequestFriend = null, requestFriend = null } = useFriends();
-    const [inputValue, setInputValue] = useState('');
+	const [inputValue, setInputValue] = useState('');
+	
+	const { canRequestFriend = null, requestFriend = null } = useFriends();
 
     useMessageEvent<HabboSearchResultEvent>(HabboSearchResultEvent, event =>
     {
@@ -48,7 +44,7 @@ export const FriendsSearchView: FC<FriendsSearchViewProps> = props =>
                 </div>
                 <div className='col-md-2'>
                     <button onClick={() => setSearchValue(inputValue)} className='btn w-100' style={{ backgroundColor: "var(--colors-secondary)" }}>
-                        <img src="https://4.bp.blogspot.com/-Uvk9RYWRoXw/Xz2Pzw-_65I/AAAAAAABdL4/nd7f66N6EHY_W4TfTCJP0EkBrC3-fD1TgCPcBGAsYHg/s1600/Lupa2.png" />
+                        <div className='icon icon-search'></div>
                     </button>
                 </div>
             </div>
@@ -71,7 +67,7 @@ export const FriendsSearchView: FC<FriendsSearchViewProps> = props =>
                                                         <div className='col-md-3'>
                                                             <div onClick={event => GetUserProfile(result.avatarId)}>
                                                                 <div className="nitro-chat-avatar-card">
-                                                                    <img className="nitro-chat-avatar-image-search" src={`https://imager.bobba.chat/?figure=${result.avatarFigure}&direction=4&head_direction=4&headonly=1`} />
+                                                                    <LayoutAvatarImageView className="nitro-chat-avatar-image-search" figure={result.avatarFigure} headOnly={true} direction={4} />
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -111,13 +107,6 @@ export const FriendsSearchView: FC<FriendsSearchViewProps> = props =>
                                             <div key={result.avatarId} className="row mt-1 friendlist-element" style={{ padding: "20px", position: "relative" }}>
                                                 <div className='col-md-6'>
                                                     <div className='row'>
-                                                        <div className='col-md-3'>
-                                                            <div onClick={event => GetUserProfile(result.avatarId)}>
-                                                                <div className="nitro-chat-avatar-card">
-                                                                    <img className="nitro-chat-avatar-image-search" src={`https://imager.bobba.chat/?figure=${result.avatarFigure}&direction=4&head_direction=4&headonly=1`} />
-                                                                </div>
-                                                            </div>
-                                                        </div>
                                                         <div className='col-md-9'>
                                                             <div style={{ marginTop: "8px" }}>
                                                                 <Text variant="white" bold>{result.avatarName}</Text>
