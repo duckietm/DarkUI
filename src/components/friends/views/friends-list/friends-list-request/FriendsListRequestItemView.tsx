@@ -1,6 +1,6 @@
 import { FC } from 'react';
-import { GetUserProfile, MessengerRequest } from '../../../../../api';
-import { Text, UserProfileIconView } from '../../../../../common';
+import { GetUserProfile, LocalizeText, MessengerRequest } from '../../../../../api';
+import { Text } from '../../../../../common';
 import { useFriends } from '../../../../../hooks';
 
 export const FriendsListRequestItemView: FC<{ request: MessengerRequest }> = props =>
@@ -14,25 +14,18 @@ export const FriendsListRequestItemView: FC<{ request: MessengerRequest }> = pro
         <div style={{ padding: "20px", position: "relative" }} className={`row gx-0 mt-1 friendlist-element`}>
             <div className='col-md-6'>
                 <div className='row'>
-                    <div className='col-md-3'>
-                        <div onClick={event => GetUserProfile(request.id)}>
-                            <div className="nitro-chat-avatar-card">
-                                <UserProfileIconView userId={ request.id } />
-                            </div>
-                        </div>
-                    </div>
                     <div className='col-md-9'>
                         <div style={{ marginTop: "14px" }}>
-                            <Text variant="white" bold>{request.name}</Text>
+                            <Text variant="white" fontSize={4} bold>{request.name}</Text>
                         </div>
                     </div>
                 </div>
             </div>
             <div className='col-md-6'>
                 <div style={{ float: "right", marginTop: "13px" }}>
-                    <button className='btn btn-sm btn-success' onClick={(e) => { requestResponse(request.id, true) }} style={{ fontSize: "12px" }}>Aceptar</button>&nbsp;
-                    <button className='btn btn-sm btn-danger' onClick={(e) => { requestResponse(request.id, false) }} style={{ fontSize: "12px" }}>Rechazar</button>&nbsp;
-                    <button className='btn btn-sm btn-muted' onClick={event => GetUserProfile(request.id)} style={{ fontSize: "12px" }}>Perfil</button>
+                    <button className='btn btn-sm btn-success m-1' onClick={(e) => { requestResponse(request.id, true) }} style={{ fontSize: "12px" }}>{LocalizeText('friendbar.request.accept')}</button>
+                    <button className='btn btn-sm btn-danger m-1' onClick={(e) => { requestResponse(request.id, false) }} style={{ fontSize: "12px" }}>{LocalizeText('friendbar.request.decline')}</button>
+                    <button className='btn btn-sm btn-muted m-1' onClick={event => GetUserProfile(request.id)} style={{ fontSize: "12px" }}>{LocalizeText('friendbar.request.profile')}</button>
                 </div>
             </div>
         </div>

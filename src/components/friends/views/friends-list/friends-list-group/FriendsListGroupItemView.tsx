@@ -63,9 +63,6 @@ export const FriendsListGroupItemView: FC<FriendsListGroupItemViewProps> = ({ fr
                         <div style={{ marginTop: "-6px" }}>
                             <Text variant="white">{friend.motto}</Text>
                         </div>
-                        <div style={{ marginTop: "-6px" }}>
-                            <Text variant={selected ? 'white' : 'muted'} underline>Hotel view</Text>
-                        </div>
                     </div>
                 </div>
             </div>

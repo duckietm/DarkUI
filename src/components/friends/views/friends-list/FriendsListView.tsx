@@ -13,29 +13,21 @@ import { FriendsListRequestView } from './friends-list-request/FriendsListReques
 export const FriendsListView: FC<{}> = props =>
 {
     const [isVisible, setIsVisible] = useState(false);
-	const [section, setSection] = useState("online");
+    const [section, setSection] = useState("online");
     const [selectedFriendsIds, setSelectedFriendsIds] = useState<number[]>([]);
-    const [showRoomInvite, setShowRoomInvite] = useState<boolean>(false);
-    const [showRemoveFriendsConfirmation, setShowRemoveFriendsConfirmation] = useState<boolean>(false);
+    const [showRoomInvite, setShowRoomInvite] = useState(false);
+    const [showRemoveFriendsConfirmation, setShowRemoveFriendsConfirmation] = useState(false);
 	
     const { onlineFriends = [], offlineFriends = [], requests = [], requestFriend = null, requestResponse = null } = useFriends();
 
     const removeFriendsText = useMemo(() =>
     {
-        if (!selectedFriendsIds || !selectedFriendsIds.length) return '';
+        if (!selectedFriendsIds.length) return '';
 
-        const userNames: string[] = [];
-
-        for (const userId of selectedFriendsIds)
-        {
-            let existingFriend: MessengerFriend = onlineFriends.find(f => f.id === userId);
-
-            if (!existingFriend) existingFriend = offlineFriends.find(f => f.id === userId);
-
-            if (!existingFriend) continue;
-
-            userNames.push(existingFriend.name);
-        }
+        const userNames = selectedFriendsIds
+            .map(userId => onlineFriends.find(f => f.id === userId) || offlineFriends.find(f => f.id === userId))
+            .filter(friend => friend)
+            .map(friend => friend.name);
 
         return LocalizeText('friendlist.removefriendconfirm.userlist', ['user_names'], [userNames.join(', ')]);
     }, [offlineFriends, onlineFriends, selectedFriendsIds]);
@@ -47,69 +39,55 @@ export const FriendsListView: FC<{}> = props =>
         setSelectedFriendsIds(prevValue =>
         {
             const newValue = [...prevValue];
+            const index = newValue.indexOf(userId);
 
-            const existingUserIdIndex: number = newValue.indexOf(userId);
-
-            if (existingUserIdIndex > -1)
-            {
-                newValue.splice(existingUserIdIndex, 1)
-            }
-            else
-            {
-                newValue.push(userId);
-            }
+            if (index > -1) newValue.splice(index, 1);
+            else newValue.push(userId);
 
             return newValue;
         });
-    }, [setSelectedFriendsIds]);
+    }, []);
 
-    const sendRoomInvite = (message: string) =>
+    const sendRoomInvite = useCallback((message: string) =>
     {
-        if (!selectedFriendsIds.length || !message || !message.length || (message.length > 255)) return;
+        if (!selectedFriendsIds.length || !message || message.length > 255) return;
 
         SendMessageComposer(new SendRoomInviteComposer(message, selectedFriendsIds));
-
         setShowRoomInvite(false);
-    }
+    }, [selectedFriendsIds]);
 
-    const removeSelectedFriends = () =>
+    const removeSelectedFriends = useCallback(() =>
     {
-        if (selectedFriendsIds.length === 0) return;
+        if (!selectedFriendsIds.length) return;
 
-        setSelectedFriendsIds(prevValue =>
-        {
-            SendMessageComposer(new RemoveFriendComposer(...prevValue));
-
-            return [];
-        });
-
+        SendMessageComposer(new RemoveFriendComposer(...selectedFriendsIds));
+        setSelectedFriendsIds([]);
         setShowRemoveFriendsConfirmation(false);
-    }
+    }, [selectedFriendsIds]);
 
     useEffect(() =>
     {
         const linkTracker: ILinkEventTracker = {
             linkReceived: (url: string) =>
             {
-                const parts = url.split('/');
+                const [prefix, command, id, name] = url.split('/');
 
-                if (parts.length < 2) return;
-
-                switch (parts[1])
+                switch (command)
                 {
                     case 'show':
                         setIsVisible(true);
-                        return;
+                        break;
                     case 'hide':
                         setIsVisible(false);
-                        return;
+                        break;
                     case 'toggle':
                         setIsVisible(prevValue => !prevValue);
-                        return;
+                        break;
                     case 'request':
-                        if (parts.length < 4) return;
-
-                        requestFriend(parseInt(parts[2]), parts[3]);
+                        if (id && name) requestFriend(parseInt(id), name);
+                        break;
+                    default:
+                        break;
                 }
             },
             eventUrlPrefix: 'friends/'
@@ -122,83 +100,100 @@ export const FriendsListView: FC<{}> = props =>
 
     if (!isVisible) return null;
 
-    return (
-        <>
-            <NitroCardView className="nitro-friends" uniqueKey="nitro-friends">
-                <NitroCardHeaderView headerText={LocalizeText('friendlist.friends')} onCloseClick={event => setIsVisible(false)} />
-                <NitroCardTabsView>
-                    <NitroCardTabsItemView onClick={(e) => setSection("online")} isActive={section === "online" ? true : false}>
-                        <Flex gap={0} alignItems="center">
-                            {LocalizeText('friendlist.online')}
-                        </Flex>
-                    </NitroCardTabsItemView>
-                    <NitroCardTabsItemView onClick={(e) => setSection("offline")} isActive={section === "offline" ? true : false}>
-                        <Flex gap={0} alignItems="center">
-                            {LocalizeText('friendlist.offline')}
-                        </Flex>
-                    </NitroCardTabsItemView>
-                    <NitroCardTabsItemView onClick={(e) => setSection("requests")} isActive={section === "requests" ? true : false}>
-                        <Flex gap={0} alignItems="center">
-                            {LocalizeText('friendlist.requests')}
-                        </Flex>
-                    </NitroCardTabsItemView>
-                    <NitroCardTabsItemView onClick={(e) => setSection("search")} isActive={section === "search" ? true : false}>
-                        <Flex gap={0} alignItems="center">
-                            {LocalizeText('generic.search')}
-                        </Flex>
-                    </NitroCardTabsItemView>
-                </NitroCardTabsView>
-                <NitroCardContentView overflow="hidden" gap={1} className="text-black p-0">
-
-                    {section === "online" &&
-                        <div style={{overflow: "auto"}}>
-                            <div className="row mt-1 gx-1" style={{ marginLeft: "0px", marginRight: "0px", padding: "4px" }}>
-                                <div className='col-md-6'>
-                                    <button onClick={() => setShowRoomInvite(true)} disabled={selectedFriendsIds && selectedFriendsIds.length > 0 ? false : true} className='btn w-100' style={{ backgroundColor: "var(--colors-secondary)" }}>
-                                        {LocalizeText('friendlist.tip.invite')}
-                                    </button>
-                                </div>
-                                <div className='col-md-6'>
-                                    <button onClick={event => setShowRemoveFriendsConfirmation(true)} disabled={selectedFriendsIds && selectedFriendsIds.length > 0 ? false : true} className={`btn w-100 btn-danger`}>
-                                        {LocalizeText('friendlist.tip.remove')}
-                                    </button>
-                                </div>
+    const renderSection = () => {
+        switch (section) {
+            case 'online':
+                return (
+                    <div style={{ overflow: "auto" }}>
+                        <div className="row mt-1 gx-1" style={{ marginLeft: "0px", marginRight: "0px", padding: "4px" }}>
+                            <div className='col-md-6'>
+                                <button 
+                                    onClick={() => setShowRoomInvite(true)} 
+                                    disabled={!selectedFriendsIds.length} 
+                                    className='btn w-100' 
+                                    style={{ backgroundColor: "var(--colors-secondary)" }}>
+                                    {LocalizeText('friendlist.tip.invite')}
+                                </button>
                             </div>
-                            <FriendsListGroupView list={onlineFriends} selectedFriendsIds={selectedFriendsIds} selectFriend={selectFriend} />
-                        </div>
-                    }
-
-                    {section === "offline" &&
-                        <div style={{overflow: "auto"}}>
-                            <div className="row mt-1 gx-1" style={{ marginLeft: "0px", marginRight: "0px", padding: "4px" }}>
-                                <div className='col-md-12'>
-                                    <button onClick={event => setShowRemoveFriendsConfirmation(true)} disabled={selectedFriendsIds && selectedFriendsIds.length > 0 ? false : true} className={`btn w-100 btn-danger`}>
-                                        {LocalizeText('friendlist.tip.remove')}
-                                    </button>
-                                </div>
+                            <div className='col-md-6'>
+                                <button 
+                                    onClick={() => setShowRemoveFriendsConfirmation(true)} 
+                                    disabled={!selectedFriendsIds.length} 
+                                    className='btn w-100 btn-danger'>
+                                    {LocalizeText('friendlist.tip.remove')}
+                                </button>
                             </div>
-                            <FriendsListGroupOfflineView list={offlineFriends} selectedFriendsIds={selectedFriendsIds} selectFriend={selectFriend} />
                         </div>
-                    }
-
-                    {section === "requests" && <div style={{overflow: "auto"}}>
+                        <FriendsListGroupView list={onlineFriends} selectedFriendsIds={selectedFriendsIds} selectFriend={selectFriend} />
+                    </div>
+                );
+            case 'offline':
+                return (
+                    <div style={{ overflow: "auto" }}>
                         <div className="row mt-1 gx-1" style={{ marginLeft: "0px", marginRight: "0px", padding: "4px" }}>
                             <div className='col-md-12'>
-                                <button disabled={requests && requests.length > 0 ? false : true} onClick={event => requestResponse(-1, false)} className={`btn w-100 btn-danger`}>
+                                <button 
+                                    onClick={() => setShowRemoveFriendsConfirmation(true)} 
+                                    disabled={!selectedFriendsIds.length} 
+                                    className='btn w-100 btn-danger'>
+                                    {LocalizeText('friendlist.tip.remove')}
+                                </button>
+                            </div>
+                        </div>
+                        <FriendsListGroupOfflineView list={offlineFriends} selectedFriendsIds={selectedFriendsIds} selectFriend={selectFriend} />
+                    </div>
+                );
+            case 'requests':
+                return (
+                    <div style={{ overflow: "auto" }}>
+                        <div className="row mt-1 gx-1" style={{ marginLeft: "0px", marginRight: "0px", padding: "4px" }}>
+                            <div className='col-md-12'>
+                                <button 
+                                    disabled={!requests.length} 
+                                    onClick={() => requestResponse(-1, false)} 
+                                    className='btn w-100 btn-danger'>
                                     {LocalizeText('friendlist.tip.declineall')}
                                 </button>
                             </div>
                         </div>
                         <FriendsListRequestView />
-                    </div>}
+                    </div>
+                );
+            case 'search':
+                return <FriendsSearchView headerText={LocalizeText('people.search.title')} />;
+            default:
+                return null;
+        }
+    };
 
-                    {section === "search" && <FriendsSearchView headerText={LocalizeText('people.search.title')} />}
+    return (
+        <>
+            <NitroCardView className="nitro-friends" uniqueKey="nitro-friends">
+                <NitroCardHeaderView headerText={LocalizeText('friendlist.friends')} onCloseClick={() => setIsVisible(false)} />
+                <NitroCardTabsView>
+                    {['online', 'offline', 'requests', 'tip.search'].map(tab => (
+                        <NitroCardTabsItemView key={tab} onClick={() => setSection(tab)} isActive={section === tab}>
+                            <Flex gap={0} alignItems="center">
+                                {LocalizeText(`friendlist.${tab}`)}
+                            </Flex>
+                        </NitroCardTabsItemView>
+                    ))}
+                </NitroCardTabsView>
+                <NitroCardContentView overflow="hidden" gap={1} className="text-black p-0">
+                    {renderSection()}
                 </NitroCardContentView>
             </NitroCardView>
-            {showRoomInvite &&
-                <FriendsRoomInviteView selectedFriendsIds={selectedFriendsIds} onCloseClick={() => setShowRoomInvite(false)} sendRoomInvite={sendRoomInvite} />}
-            {showRemoveFriendsConfirmation &&
-                <FriendsRemoveConfirmationView selectedFriendsIds={selectedFriendsIds} removeFriendsText={removeFriendsText} onCloseClick={() => setShowRemoveFriendsConfirmation(false)} removeSelectedFriends={removeSelectedFriends} />}
+            {showRoomInvite && 
+                <FriendsRoomInviteView 
+                    selectedFriendsIds={selectedFriendsIds} 
+                    onCloseClick={() => setShowRoomInvite(false)} 
+                    sendRoomInvite={sendRoomInvite} />}
+            {showRemoveFriendsConfirmation && 
+                <FriendsRemoveConfirmationView 
+                    selectedFriendsIds={selectedFriendsIds} 
+                    removeFriendsText={removeFriendsText} 
+                    onCloseClick={() => setShowRemoveFriendsConfirmation(false)} 
+                    removeSelectedFriends={removeSelectedFriends} />}
         </>
     );
 };

@@ -65,17 +65,15 @@ export const FriendsSearchView: FC<FriendsSearchViewProps> = props =>
                                                 <div className='col-md-6'>
                                                     <div className='row'>
                                                         <div className='col-md-3'>
-                                                            <div onClick={event => GetUserProfile(result.avatarId)}>
-                                                                <div className="nitro-chat-avatar-card">
-                                                                    <LayoutAvatarImageView className="nitro-chat-avatar-image-search" figure={result.avatarFigure} headOnly={true} direction={4} />
-                                                                </div>
-                                                            </div>
+															<div className="nitro-chat-avatar-card">
+																<LayoutAvatarImageView className="nitro-chat-avatar-image-search" figure={result.avatarFigure} headOnly={true} direction={4} />
+															</div>
                                                         </div>
                                                         <div className='col-md-9'>
-                                                            <div style={{ marginTop: "8px" }}>
-                                                                <Text variant="white" bold>{result.avatarName}</Text>
-                                                                <div style={{ marginTop: "-6px" }}>
-                                                                    <Text variant="muted">{result.avatarMotto}</Text>
+                                                            <div className="ms-2 mt-3">
+                                                                <Text variant="white" fontSize={4} bold>{result.avatarName}</Text>
+                                                                <div className="mt-n2">
+                                                                    <Text fontSize={5} variant="muted">{result.avatarMotto}</Text>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -108,11 +106,8 @@ export const FriendsSearchView: FC<FriendsSearchViewProps> = props =>
                                                 <div className='col-md-6'>
                                                     <div className='row'>
                                                         <div className='col-md-9'>
-                                                            <div style={{ marginTop: "8px" }}>
-                                                                <Text variant="white" bold>{result.avatarName}</Text>
-                                                                <div style={{ marginTop: "-6px" }}>
-                                                                    <Text variant="muted">{result.avatarMotto}</Text>
-                                                                </div>
+                                                            <div>
+                                                                <Text variant="white" fontSize={4} bold>{result.avatarName}</Text>
                                                             </div>
                                                         </div>
                                                     </div>
