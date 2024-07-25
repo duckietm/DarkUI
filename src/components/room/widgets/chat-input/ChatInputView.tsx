@@ -256,8 +256,8 @@ export const ChatInputView: FC<{}> = props =>
                 </TransitionAnimation>
                 <div className="nitro-chat-input-container">
                     <ChatInputStyleSelectorView chatStyleId={chatStyleId} chatStyleIds={chatStyleIds} selectChatStyleId={updateChatStyleId} />
-                    <div className='nitro-chat-avatar-icon-container nitro-pointer' onClick={event => setMeExpanded(!isMeExpanded)}>
-                        <LayoutAvatarImageView figure={userFigure} direction={2} headOnly position='absolute' style={{ top: "-19px", left: "38px" }} />
+                    <div className='nitro-chat-avatar-icon-container nitro-pointer-chat' onClick={event => setMeExpanded(!isMeExpanded)}>
+                        <LayoutAvatarImageView className='avatar-chat-position' headOnly figure={userFigure} direction={2}/>
                     </div>
                     {!floodBlocked &&
                         <input ref={inputRef} type="text" className="nitro-chat-input-control" placeholder={ LocalizeText('widgets.chatinput.default') } value={chatValue} maxLength={maxChatLength} onChange={event => updateChatInput(event.target.value)} onMouseDown={event => setInputFocus()} />}
