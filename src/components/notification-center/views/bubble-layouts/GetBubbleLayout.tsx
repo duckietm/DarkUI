@@ -1,19 +1,18 @@
-import React from 'react';
 import { NotificationBubbleItem, NotificationBubbleType } from '../../../../api';
 import { NotificationClubGiftBubbleView } from './NotificationClubGiftBubbleView';
 import { NotificationDefaultBubbleView } from './NotificationDefaultBubbleView';
 
-export const GetBubbleLayout = (item: NotificationBubbleItem, onClose: () => void) => {
+export const GetBubbleLayout = (item: NotificationBubbleItem, onClose: () => void) =>
+{
+    if(!item) return null;
 
-    if (!item) return null;
+    const props = { key: item.id, item, onClose };
 
-    const { id, notificationType, ...rest } = item;
-    const props = { item: rest, onClose };
-
-    switch (notificationType) {
+    switch(item.notificationType)
+    {
         case NotificationBubbleType.CLUBGIFT:
-            return <NotificationClubGiftBubbleView key={id} {...props} />;
+            return <NotificationClubGiftBubbleView { ...props } />
         default:
-            return <NotificationDefaultBubbleView key={id} {...props} />;
+            return <NotificationDefaultBubbleView { ...props } />
     }
-};
+}
