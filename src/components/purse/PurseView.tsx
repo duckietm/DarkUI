@@ -59,10 +59,14 @@ export const PurseView: FC = () => {
                                 {getCurrencyElements(0, 2)}
                             </div>
                         </div>
-                        <div className='col-md-4 text-center' style={{ borderLeft: "1px #363636 solid" }}>
-                            <LayoutCurrencyIcon style={{ display: "inline-block", marginLeft: "5px", position: "relative", top: "3px" }} className="club-text" type="hc" />
+                        <div className='col-md-4 text-center' style={{ borderLeft: "1px #363636 solid" }} onClick={event => CreateLinkEvent('habboUI/open/hccenter')}>
+							<div>
+								<LayoutCurrencyIcon style={{ display: "inline-block", marginLeft: "5px", position: "relative", top: "3px" }} className="club-text" type="hc" />
+							</div>
                             <div style={{ display: "inline-block" }}>
-                                <Text variant='white' small bold>{LocalizeText('catalog.club.vip')}</Text>
+								<div>
+									<Text variant="white">{ getClubText }</Text>
+								</div>
                             </div>
                         </div>
                     </div>
@@ -75,10 +79,13 @@ export const PurseView: FC = () => {
                             </Flex>
                         </div>
                         <div className="col-md-4">
-                            <Flex style={{ height: "20px !important" }} center pointer className="nitro-purse-right-button disconnect p-1 w-100" onClick={() => window.location.href = "/index"}>
-                                <i className="icon icon-purse-disconnect" />
-                            </Flex>
-                        </div>
+							<Flex style={{ height: "20px !important" }} center pointer className="nitro-purse-right-button disconnect p-1 w-100" onClick={() => {
+								fetch('/logout', { method: 'POST', headers: { 'Content-Type': 'application/json', }, }) .then(response => {
+									if (response.ok) { window.location.href = "/index"; } else { console.error('Logout failed'); } }) .catch(error => { console.error('Error during logout:', error); });
+								}}>
+								<i className="icon icon-purse-disconnect" />
+							</Flex>
+						</div>
                         <div className="col-md-4">
                             <Flex style={{ height: "20px !important" }} center pointer className="nitro-purse-right-button settings p-1 w-100" onClick={() => CreateLinkEvent('user-settings/toggle')}>
                                 <i className="icon icon-purse-settings" />
