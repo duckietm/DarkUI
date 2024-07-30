@@ -23,6 +23,8 @@
     "wired.action.mute.user.max.length": 100,
     "game.center.enabled": false,
 	"youtube.publish.disabled": false,
+	"radioplayer": true,
+	"stream.url": "https://playerservices.streamtheworld.com/api/livestream-redirect/RADIO538.mp3",
     "navigator.room.models": [{
             "clubLevel": 0,
             "tileSize": 104,
