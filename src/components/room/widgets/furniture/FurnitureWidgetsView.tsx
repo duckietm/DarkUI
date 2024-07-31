@@ -1,6 +1,5 @@
 import { FC } from 'react';
 import { Base } from '../../../../common';
-import { YoutubePlayerView } from '../youtube-player/YoutubePlayerView';
 import { FurnitureContextMenuView } from './context-menu/FurnitureContextMenuView';
 import { FurnitureBackgroundColorView } from './FurnitureBackgroundColorView';
 import { FurnitureBadgeDisplayView } from './FurnitureBadgeDisplayView';
@@ -26,7 +25,6 @@ export const FurnitureWidgetsView: FC<{}> = props =>
     return (
         <Base fit position="absolute" className="nitro-room-widgets top-0 start-0">
             <FurnitureBackgroundColorView />
-            <YoutubePlayerView />
             <FurnitureBadgeDisplayView />
             <FurnitureCraftingView />
             <FurnitureDimmerView />
