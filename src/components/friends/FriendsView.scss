@@ -106,8 +106,8 @@
 }
 
 .friend-bar {
-    position: relative;
-    display: flex;
+    position: relative; /* Ensure child elements are positioned correctly */
+    display: flex; /* Align items horizontally if needed */
 
     .friend-bar-item {
         width: 130px;
@@ -157,8 +157,8 @@
     position: absolute;
     right: 100%;
     top: 0;
-    transform: translateX(-10px);
-    background-color: rgba(0, 0, 0, 0.6);
+    transform: translateX(-10px); /* Adjust as needed for spacing */
+    background-color: rgba(0, 0, 0, 0.6); /* Black with 60% opacity */
     z-index: 3;
     width: 250px;
 	height: 75px;
