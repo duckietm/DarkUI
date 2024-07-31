@@ -1,16 +1,17 @@
-import { MouseEventType } from '@nitrots/nitro-renderer';
+import { FindNewFriendsMessageComposer, MouseEventType } from '@nitrots/nitro-renderer';
 import { FC, useEffect, useRef, useState } from 'react';
-import { GetUserProfile, MessengerFriend, OpenMessengerChat } from '../../../../api';
-import { LayoutAvatarImageView, LayoutBadgeImageView, Text } from '../../../../common';
+import { GetUserProfile, LocalizeText, MessengerFriend, OpenMessengerChat, SendMessageComposer } from '../../../../api';
+import { Base, Button, LayoutAvatarImageView, Text } from '../../../../common';
 import { useFriends } from '../../../../hooks';
-import { FaAddressCard, FaRegChartBar, FaCommentDots } from 'react-icons/fa';
+import { FaAddressCard, FaCommentDots, FaRunning, FaSearch } from 'react-icons/fa';
 import classNames from 'classnames';
 
 interface FriendBarItemViewProps {
     friend: MessengerFriend | null;
+    onActivate: (friend: MessengerFriend | null) => void;
 }
 
-export const FriendBarItemView: FC<FriendBarItemViewProps> = ({ friend }) => {
+export const FriendBarItemView: FC<FriendBarItemViewProps> = ({ friend, onActivate }) => {
     const [isVisible, setVisible] = useState(false);
     const { followFriend } = useFriends();
     const elementRef = useRef<HTMLDivElement>(null);
@@ -20,38 +21,49 @@ export const FriendBarItemView: FC<FriendBarItemViewProps> = ({ friend }) => {
             const element = elementRef.current;
             if (element && !element.contains(event.target as Node)) {
                 setVisible(false);
+                onActivate(null);
             }
         };
 
         document.addEventListener(MouseEventType.MOUSE_CLICK, onClick);
         return () => document.removeEventListener(MouseEventType.MOUSE_CLICK, onClick);
-    }, []);
+    }, [onActivate]);
+
+    const handleAvatarClick = () => {
+        setVisible(prevValue => !prevValue);
+        onActivate(isVisible ? null : friend);
+    };
 
     if (!friend) {
         return (
-            <div style={{ height: "70px" }} ref={elementRef} className="mb-0">
+            <div style={{ height: "70px", position: 'relative' }} ref={elementRef} className={classNames({ 'friend-bar-search-item-active': isVisible })} onClick={handleAvatarClick}>
                 <div style={{ height: "40px" }}>
-                    <div className="friend-bar-item-head position-absolute group">
-                        <LayoutAvatarImageView
-                            headOnly
-                            className="image-friendzone"
-                            figure="ch-3215-92.hr-831-45.sh-290-64.fa-1206-91.lg-270-92.ha-3129-92.hd-180-2.cc-3039-92"
-                            direction={2}
-                        />
-                    </div>
+                    <div className="friend-bar-item-head position-absolute"/>
+                    <LayoutAvatarImageView headOnly className="image-friendzone" figure="ch-3215-92.hr-831-45.sh-290-64.fa-1206-91.lg-270-92.ha-3129-92.hd-180-2.cc-3039-92" direction={2} />
+                    {isVisible && (
+                        <div className="friend-bar-search-item-find">
+                            <div className="mt-2 mb-2">
+                                {LocalizeText('friend.bar.find.text')}
+                            </div>
+                            <Button className="btn btn-sm btn-muted mt-2 mb-2" onClick={() => SendMessageComposer(new FindNewFriendsMessageComposer())}>
+                                {LocalizeText('friend.bar.find.button')}
+                            </Button>
+                        </div>
+                    )}
                 </div>
-                <Text variant="white" small bold className="mb-4">Buscar</Text>
+				<FaSearch  />
             </div>
         );
     }
 
     return (
         <div
-            style={{ height: "70px" }}
+            style={{ height: "70px", position: 'relative' }}
             ref={elementRef}
             className={classNames('mb-0', { 'friend-bar-item-active': isVisible })}
             onMouseOver={() => setVisible(true)}
             onMouseOut={() => setVisible(false)}
+            onClick={handleAvatarClick}
         >
             <div style={{ height: "40px" }}>
                 <div className={classNames('friend-bar-item-head position-absolute', {
@@ -95,26 +107,30 @@ export const FriendBarItemView: FC<FriendBarItemViewProps> = ({ friend }) => {
                     {friend.name.length > 10 ? `${friend.name.substring(0, 10)}...` : friend.name}
                 </Text>
             ) : (
-                <div className="d-flex justify-content-between friendbaritemview" >
+                <div className="d-flex justify-content-between friendbaritemview">
                     <div className="d-flex">
-						<div className="nitro-pointer" onClick={() => OpenMessengerChat(friend.id)}>
-							<Text variant="white" bold>
-								<FaCommentDots />
-							</Text>
-						</div>
-					</div>
+                        <div className="nitro-pointer mt-2 mb-2" onClick={() => OpenMessengerChat(friend.id)}>
+                            <Text variant="white" bold>
+                                <FaCommentDots />
+                            </Text>
+                        </div>
+                    </div>
                     {friend.followingAllowed && (
-                        <div className="nitro-pointer" onClick={() => followFriend(friend)}>
-                            <Text variant="white" small bold>
-                                <FaRegChartBar />
+                        <div className="nitro-pointer mt-2 mb-2" onClick={() => followFriend(friend)}>
+                            <Text variant="white" bold>
+                                <FaRunning />
                             </Text>
                         </div>
                     )}
-                    <div className="nitro-pointer" onClick={() => GetUserProfile(friend.id)}>
-                        <Text variant="white" small bold>
-                            <FaAddressCard />
-                        </Text>
-                    </div>
+                    {!(friend.id <= 0 && friend.figure === 'ADM') && (
+						<div className="d-flex">
+							<div className="nitro-pointer mt-2 mb-2" onClick={() => GetUserProfile(friend.id)}>
+								<Text variant="white" bold>
+									<FaAddressCard  />
+								</Text>
+							</div>
+						</div>
+                    )}
                 </div>
             )}
         </div>

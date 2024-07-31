@@ -106,27 +106,28 @@
 }
 
 .friend-bar {
-
-    .friend-bar-button {
-        background: rgba(0,0,0,0.6);
-        border-color:rgba(24, 24, 24, 0.6);
-        z-index: 2;
-    }
+    position: relative;
+    display: flex;
 
     .friend-bar-item {
         width: 130px;
         margin: 0 3px;
-        z-index: 0;
         position: relative;
-        padding-left:38px;
+        padding-left: 38px;
         text-align: left;
         border: 1px solid #ffffff;
         transition: all .2s ease;
-    
+
         &.friend-bar-item-active {
-            //margin-bottom:21px;
+            /* Styles for active state */
         }
-    
+
+        &.friend-bar-search-item-active {
+            margin-bottom:10.5em;
+			background-color: #b69b83;
+			border: 2px solid #e2c1a3;
+        }
+
         &:hover .friend-bar-item-head {
             /*pointer-events:none;
             height: 84px !important;
@@ -150,6 +151,20 @@
             } 
         }
     }
+}
+
+.friend-bar-search-item-find {
+    position: absolute;
+    right: 100%;
+    top: 0;
+    transform: translateX(-10px);
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 3;
+    width: 250px;
+	height: 75px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    transition: opacity 0.2s ease-in-out;
+    opacity: 1;
 }
 
 .nitro-friends-messenger {
