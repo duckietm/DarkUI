@@ -37,3 +37,4 @@ export const CurrencyView: FC<CurrencyViewProps> = props =>
         </OverlayTrigger>
     );
 }
+	
