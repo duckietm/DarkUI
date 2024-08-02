@@ -108,9 +108,6 @@ export const ToolbarView: FC<{ isInRoom: boolean }> = props =>
                     <Flex alignItems="center" justifyContent="between" className="nitro-toolbar py-1 px-3 animate__animated animate__backInUp">
                         <Flex gap={1} alignItems="center">
                             <Flex alignItems="center" className="nitro-toolbar-firstview">
-                                {/*<Flex center pointer className={'navigation-item item-avatar nitro-toolbar-avatar-icon ' + (isMeExpanded ? 'active ' : '')} onClick={event => setMeExpanded(!isMeExpanded)}>
-                                    <LayoutAvatarImageView figure={userFigure} direction={3} position="absolute" />
-                                </Flex>*/}
                                 {isInRoom && <RoomWidgetsView />}
                             </Flex>
                             <Flex className='w-100'>&nbsp;</Flex>

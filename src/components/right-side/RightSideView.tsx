@@ -8,15 +8,14 @@ import { PurseView } from '../purse/PurseView';
 import { MysteryBoxExtensionView } from '../room/widgets/mysterybox/MysteryBoxExtensionView';
 import { RoomPromotesWidgetView } from '../room/widgets/room-promotes/RoomPromotesWidgetView';
 import RadioView from './RadioView';
-import { GetConfiguration } from '../../api'; // Import your configuration function
+import { GetConfiguration } from '../../api';
 
 export const RightSideView: FC<{}> = () => {
     const [isVisible, setIsVisible] = useState(true);
-    const [radioEnabled, setRadioEnabled] = useState<boolean>(false); // State to store radioEnabled
+    const [radioEnabled, setRadioEnabled] = useState<boolean>(false);
     const { isPlaying } = useIsPlaying();
 
     useEffect(() => {
-        // Fetch radio player configuration
         const fetchRadioConfig = async () => {
             const enabled = GetConfiguration('radioplayer');
             setRadioEnabled(enabled);
@@ -31,7 +30,7 @@ export const RightSideView: FC<{}> = () => {
                 <div className="nitro-right-side animate__animated animate__backInDown">
                     <Column position="relative" gap={1}>
                         <PurseView />
-                        {radioEnabled && <RadioView />} {/* Conditionally render RadioView */}
+                        {radioEnabled && <RadioView />}
                         <GroupRoomInformationView />
                         <MysteryBoxExtensionView />
                         <OfferView />
