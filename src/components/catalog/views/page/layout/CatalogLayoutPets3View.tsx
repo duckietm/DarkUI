@@ -20,7 +20,7 @@ export const CatalogLayoutPets3View: FC<CatalogLayoutProps> = props =>
                 <Base dangerouslySetInnerHTML={ { __html: page.localization.getText(2) } } />
             </Column>
             <Flex alignItems="center">
-                <Base className="fw-bold" dangerouslySetInnerHTML={ { __html: page.localization.getText(3) } } />
+                <Base className="fw-bold " dangerouslySetInnerHTML={ { __html: page.localization.getText(3) } } />
             </Flex>
         </Column>
     );

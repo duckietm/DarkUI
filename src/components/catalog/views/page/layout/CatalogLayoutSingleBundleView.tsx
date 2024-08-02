@@ -20,13 +20,13 @@ export const CatalogLayoutSingleBundleView: FC<CatalogLayoutProps> = props =>
                 <Column size={ 7 } overflow="hidden">
                     { !!page.localization.getText(2) &&
                         <Text dangerouslySetInnerHTML={ { __html: page.localization.getText(2) } } /> }
-                    <Column grow overflow="hidden" className="bg-muted p-2 rounded">
+                    <Column grow overflow="hidden" className="p-2 rounded">
                         <CatalogBundleGridWidgetView fullWidth className="nitro-catalog-layout-bundle-grid" />
                     </Column>
                 </Column>
                 <Column size={ 5 } overflow="hidden" gap={ 1 }>
                     { !!page.localization.getText(1) &&
-                        <Text center small overflow="auto">{ page.localization.getText(1) }</Text> }
+                        <Text center small variant="white" overflow="auto">{ page.localization.getText(1) }</Text> }
                     <Column grow position="relative" overflow="hidden" gap={ 0 }>
                         { !!page.localization.getImage(1) &&
                             <img alt="" className="flex-grow-1" src={ page.localization.getImage(1) } /> }

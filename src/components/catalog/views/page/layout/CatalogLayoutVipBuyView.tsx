@@ -138,16 +138,16 @@ export const CatalogLayoutVipBuyView: FC<CatalogLayoutProps> = props =>
                             <LayoutGridItem key={ index } column={ false } center={ false } alignItems="center" justifyContent="between" itemActive={ pendingOffer === offer } className="p-1" onClick={ () => setOffer(offer) }>
                                 <i className="icon-hc-banner" />
                                 <Column justifyContent="end" gap={ 0 }>
-                                    <Text textEnd>{ getOfferText(offer) }</Text>
+                                    <Text variant="white" textEnd>{ getOfferText(offer) }</Text>
                                     <Flex justifyContent="end" gap={ 1 }>
                                         { (offer.priceCredits > 0) &&
                                         <Flex alignItems="center" justifyContent="end" gap={ 1 }>
-                                            <Text>{ offer.priceCredits }</Text>
+                                            <Text variant="white">{ offer.priceCredits }</Text>
                                             <LayoutCurrencyIcon type={ -1 } />
                                         </Flex> }
                                         { (offer.priceActivityPoints > 0) &&
                                         <Flex alignItems="center" justifyContent="end" gap={ 1 }>
-                                            <Text>{ offer.priceActivityPoints }</Text>
+                                            <Text variant="white">{ offer.priceActivityPoints }</Text>
                                             <LayoutCurrencyIcon type={ offer.priceActivityPointsType } />
                                         </Flex> }
                                     </Flex>
@@ -156,29 +156,29 @@ export const CatalogLayoutVipBuyView: FC<CatalogLayoutProps> = props =>
                         );
                     }) }
                 </AutoGrid>
-                <Text center dangerouslySetInnerHTML={ { __html: LocalizeText('catalog.vip.buy.hccenter') } }></Text>
+                <Text variant="white" center dangerouslySetInnerHTML={ { __html: LocalizeText('catalog.vip.buy.hccenter') } }></Text>
             </Column>
             <Column size={ 5 } overflow="hidden">
                 <Column fullHeight center overflow="hidden">
                     { currentPage.localization.getImage(1) && <img alt="" src={ currentPage.localization.getImage(1) } /> }
-                    <Text center overflow="auto" dangerouslySetInnerHTML={ { __html: getSubscriptionDetails } } />
+                    <Text variant="white" center overflow="auto" dangerouslySetInnerHTML={ { __html: getSubscriptionDetails } } />
                 </Column>
                 { pendingOffer &&
                     <Column fullWidth grow justifyContent="end">
                         <Flex alignItems="end">
                             <Column grow gap={ 0 }>
-                                <Text fontWeight="bold">{ getPurchaseHeader() }</Text>
-                                <Text>{ getPurchaseValidUntil() }</Text>
+                                <Text variant="white" fontWeight="bold">{ getPurchaseHeader() }</Text>
+                                <Text variant="white">{ getPurchaseValidUntil() }</Text>
                             </Column>
                             <Column gap={ 1 }>
                                 { (pendingOffer.priceCredits > 0) &&
                                     <Flex alignItems="center" justifyContent="end" gap={ 1 }>
-                                        <Text>{ pendingOffer.priceCredits }</Text>
+                                        <Text variant="white">{ pendingOffer.priceCredits }</Text>
                                         <LayoutCurrencyIcon type={ -1 } />
                                     </Flex> }
                                 { (pendingOffer.priceActivityPoints > 0) &&
                                     <Flex alignItems="center" justifyContent="end" gap={ 1 }>
-                                        <Text>{ pendingOffer.priceActivityPoints }</Text>
+                                        <Text variant="white">{ pendingOffer.priceActivityPoints }</Text>
                                         <LayoutCurrencyIcon type={ pendingOffer.priceActivityPointsType } />
                                     </Flex> }
                             </Column>

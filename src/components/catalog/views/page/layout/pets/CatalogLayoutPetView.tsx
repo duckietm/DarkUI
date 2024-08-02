@@ -195,19 +195,20 @@ export const CatalogLayoutPetView: FC<CatalogLayoutProps> = props =>
 
     return (
         <Grid>
-            <Column size={ 7 } overflow="hidden">
-                <AutoGrid columnCount={ 5 }>
-                    { !colorsShowing && (sellablePalettes.length > 0) && sellablePalettes.map((palette, index) =>
-                    {
-                        return (
-                            <LayoutGridItem key={ index } itemActive={ (selectedPaletteIndex === index) } onClick={ event => setSelectedPaletteIndex(index) }>
-                                <LayoutPetImageView typeId={ petIndex } paletteId={ palette.paletteId } direction={ 2 } headOnly={ true } />
-                            </LayoutGridItem>
-                        );
-                    }) }
-                    { colorsShowing && (sellableColors.length > 0) && sellableColors.map((colorSet, index) => <LayoutGridItem itemHighlight key={ index } itemActive={ (selectedColorIndex === index) } itemColor={ ColorConverter.int2rgb(colorSet[0]) } className="clear-bg" onClick={ event => setSelectedColorIndex(index) } />) }
-                </AutoGrid>
-            </Column>
+            <Column size={7} overflow="hidden">
+				<AutoGrid columnCount={5}>
+					{ !colorsShowing && (sellablePalettes.length > 0) && sellablePalettes.map((palette, index) => (
+						<LayoutGridItem key={index} itemActive={selectedPaletteIndex === index} onClick={() => setSelectedPaletteIndex(index)}>
+							<LayoutPetImageView typeId={petIndex} paletteId={palette.paletteId} direction={2} headOnly={true} />
+						</LayoutGridItem>
+					)) }
+					{ colorsShowing && (sellableColors.length > 0) && sellableColors.map((colorSet, index) => (
+						<LayoutGridItem key={index} itemHighlight itemActive={selectedColorIndex === index} lassName="clear-bg" onClick={() => setSelectedColorIndex(index)} >
+							<div style={{ width: '100%', height: '100%', backgroundColor: ColorConverter.int2rgb(colorSet[0]) }} />
+						</LayoutGridItem>
+					)) }
+				</AutoGrid>
+			</Column>
             <Column center={ !currentOffer } size={ 5 } overflow="hidden">
                 { !currentOffer &&
                     <>
@@ -225,7 +226,7 @@ export const CatalogLayoutPetView: FC<CatalogLayoutProps> = props =>
                                 </Button> }
                         </Base>
                         <Column grow gap={ 1 }>
-                            <Text truncate>{ petBreedName }</Text>
+                            <Text variant="white" truncate>{ petBreedName }</Text>
                             <Column grow gap={ 1 }>
                                 <input type="text" className="form-control form-control-sm w-100" placeholder={ LocalizeText('widgets.petpackage.name.title') } value={ petName } onChange={ event => setPetName(event.target.value) } />
                                 { (approvalResult > 0) &&

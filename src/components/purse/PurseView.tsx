@@ -49,8 +49,8 @@ export const PurseView: FC = () => {
                 <div style={{ borderBottom: "1px #363636 solid", paddingRight: "5px", paddingBottom: "10px" }}>
                     <div className='row gx-0'>
                         <div className='col-md-8'>
-                            <div className='row gx-0'>
-                                <div className='col-md-4 text-center'>
+                            <div className='row gx-0' onClick={ event => CreateLinkEvent("catalog/toggle") }>
+                                <div className='col-md-4 text-center' >
                                     <div style={{ display: "inline-block" }}>
                                         <b>{purse.credits}</b>
                                     </div>

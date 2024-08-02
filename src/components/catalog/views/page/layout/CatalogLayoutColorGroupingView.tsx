@@ -134,12 +134,11 @@ export const CatalogLayoutColorGroupingView : FC<CatalogLayoutColorGroupViewProp
         <Grid>
             <Column size={ 7 } overflow="hidden">
                 <AutoGrid columnCount={ 5 }>
-                    { (!colorsShowing || !currentOffer || !colorableItems.has(currentOffer.product.furnitureData.className)) &&
-                        offers.map((offer, index) => <CatalogGridOfferView key={ index } itemActive={ (currentOffer && (currentOffer.product.furnitureData.hasIndexedColor ? currentOffer.product.furnitureData.className === offer.product.furnitureData.className : currentOffer.offerId === offer.offerId)) } offer={ offer } selectOffer={ selectOffer }/>)
-                    }
-                    { (colorsShowing && currentOffer && colorableItems.has(currentOffer.product.furnitureData.className)) &&
-                        colorableItems.get(currentOffer.product.furnitureData.className).map((color, index) => <LayoutGridItem itemHighlight key={ index } itemActive={ (currentOffer.product.furnitureData.colorIndex === index) } itemColor={ ColorConverter.int2rgb(color) } className="clear-bg" onClick={ event => selectColor(index, currentOffer.product.furnitureData.className) } />)
-                    }
+                    { (colorsShowing && currentOffer && colorableItems.has(currentOffer.product.furnitureData.className)) && colorableItems.get(currentOffer.product.furnitureData.className).map((color, index) => (
+                        <LayoutGridItem key={index} itemHighlight itemActive={currentOffer.product.furnitureData.colorIndex === index} className="clear-bg" onClick={() => selectColor(index, currentOffer.product.furnitureData.className)} >
+                            <div style={{ width: '100%', height: '100%', backgroundColor: ColorConverter.int2rgb(color) }} />
+						</LayoutGridItem>
+					)) }
                 </AutoGrid>
             </Column>
             <Column center={ !currentOffer } size={ 5 } overflow="hidden">
