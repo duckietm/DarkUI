@@ -6,7 +6,7 @@
   "images.url": "${asset.url}/images",
   "gamedata.url": "${asset.url}",
   "sounds.url": "${asset.url}/sounds/%sample%.mp3",
-  "external.texts.url": "${gamedata.url}/config/ExternalTexts.json?v=1",
+  "external.texts.url": [ "${gamedata.url}/config/ExternalTexts.json", "${gamedata.url}/config/UITexts.json" ],
   "external.samples.url": "${gamedata.url}/sounds/sound_machine_sample_%sample%.mp3",
   "furnidata.url": "${gamedata.url}/config/FurnitureData.json?v=1",
   "productdata.url": "${gamedata.url}/config/ProductData.json?v=1",

@@ -158,17 +158,17 @@ export const UserSettingsView: FC<{}> = props =>
                 <NitroCardTabsView>
                     <NitroCardTabsItemView onClick={(e) => setSection("general")} isActive={section === "general" ? true : false}>
                         <Flex gap={0} alignItems="center">
-                            General
+                            { LocalizeText('widget.settings.general') }
                         </Flex>
                     </NitroCardTabsItemView>
                     <NitroCardTabsItemView onClick={(e) => setSection("volume")} isActive={section === "volume" ? true : false}>
                         <Flex gap={0} alignItems="center">
-                            Volumen
+                            { LocalizeText('widget.settings.volume') }
                         </Flex>
                     </NitroCardTabsItemView>
                     <NitroCardTabsItemView onClick={(e) => setSection("performance")} isActive={section === "performance" ? true : false}>
                         <Flex gap={0} alignItems="center">
-                            Interfaz
+                            { LocalizeText('widget.settings.interface') }
                         </Flex>
                     </NitroCardTabsItemView>
                 </NitroCardTabsView>
@@ -177,32 +177,29 @@ export const UserSettingsView: FC<{}> = props =>
                         <Column gap={1}>
                             <div className="d-flex justify-content-between">
                                 <div>
-                                    <Text variant="white" bold fontSize={5}>General</Text>
-                                </div>
-                                <div>
-                                    <Text variant="white">Ajustes generales de Nitro</Text>
+                                    <Text variant="white" bold fontSize={5}>{ LocalizeText('widget.settings.general.title') }</Text>
                                 </div>
                             </div>
                             <div className='w-100 mt-1 mb-3' style={{ borderBottom: "1px solid rgb(54, 54, 54)" }}></div>
                             <Flex alignItems="center" gap={1}>
                                 <input className="form-check-input" type="checkbox" checked={userSettings.oldChat} onChange={event => processAction('oldchat', event.target.checked)} />
-                                <Text variant="white">Activar la versión de chat antigua (modo flash)</Text>
+                                <Text variant="white">{ LocalizeText('memenu.settings.chat.prefer.old.chat') }</Text>
                             </Flex>
                             <Flex alignItems="center" gap={1}>
                                 <input className="form-check-input" type="checkbox" checked={userSettings.roomInvites} onChange={event => processAction('room_invites', event.target.checked)} />
-                                <Text variant="white">Ignorar invitaciones a salas enviadas por otros usuarios</Text>
+                                <Text variant="white">{ LocalizeText('memenu.settings.other.ignore.room.invites') }</Text>
                             </Flex>
                             <Flex alignItems="center" gap={1}>
                                 <input className="form-check-input" type="checkbox" checked={userSettings.cameraFollow} onChange={event => processAction('camera_follow', event.target.checked)} />
-                                <Text variant="white">No enfocar al avatar al moverte por cualquier sala</Text>
+                                <Text variant="white">{ LocalizeText('memenu.settings.other.disable.room.camera.follow') }</Text>
                             </Flex>
                             <Flex alignItems="center" gap={1}>
                                 <input className="form-check-input" type="checkbox" checked={catalogPlaceMultipleObjects} onChange={event => setCatalogPlaceMultipleObjects(event.target.checked)} />
-                                <Text variant="white">Comprar mas de un furni desde el catálogo</Text>
+                                <Text variant="white">{ LocalizeText('memenu.settings.other.place.multiple.objects') }</Text>
                             </Flex>
                             <Flex alignItems="center" gap={1}>
                                 <input className="form-check-input" type="checkbox" checked={catalogSkipPurchaseConfirmation} onChange={event => setCatalogSkipPurchaseConfirmation(event.target.checked)} />
-                                <Text variant="white">Mensaje de confirmación al comprar furnis desde el catálogo</Text>
+                                <Text variant="white">{ LocalizeText('memenu.settings.other.skip.purchase.confirmation') }</Text>
                             </Flex>
                         </Column>
                     }
@@ -211,15 +208,12 @@ export const UserSettingsView: FC<{}> = props =>
                         <Column>
                             <div className="d-flex justify-content-between">
                                 <div>
-                                    <Text variant="white" bold fontSize={5}>Volumen</Text>
-                                </div>
-                                <div>
-                                    <Text variant="white">Ajustes de volumen</Text>
+                                    <Text variant="white" bold fontSize={5}>{ LocalizeText('widget.memenu.settings.volume') }</Text>
                                 </div>
                             </div>
                             <div className='w-100 mt-1 mb-2' style={{ borderBottom: "1px solid rgb(54, 54, 54)" }}></div>
                             <Column gap={1}>
-                                <Text variant="white">Alertas, notificaciones y sonidos generales</Text>
+                                <Text variant="white">{ LocalizeText('widget.memenu.settings.volume.ui') }</Text>
                                 <Flex alignItems="center" gap={1}>
                                     {(userSettings.volumeSystem === 0) && <FaVolumeMute className={classNames((userSettings.volumeSystem >= 50) && 'text-muted', 'fa-icon')} />}
                                     {(userSettings.volumeSystem > 0) && <FaVolumeDown className={classNames((userSettings.volumeSystem >= 50) && 'text-muted', 'fa-icon')} />}
@@ -228,7 +222,7 @@ export const UserSettingsView: FC<{}> = props =>
                                 </Flex>
                             </Column>
                             <Column gap={1}>
-                                <Text variant="white">Sonidos realizados por furnis</Text>
+                                <Text variant="white">{ LocalizeText('widget.memenu.settings.volume.furni') }</Text>
                                 <Flex alignItems="center" gap={1}>
                                     {(userSettings.volumeFurni === 0) && <FaVolumeMute className={classNames((userSettings.volumeFurni >= 50) && 'text-muted', 'fa-icon')} />}
                                     {(userSettings.volumeFurni > 0) && <FaVolumeDown className={classNames((userSettings.volumeFurni >= 50) && 'text-muted', 'fa-icon')} />}
@@ -237,7 +231,7 @@ export const UserSettingsView: FC<{}> = props =>
                                 </Flex>
                             </Column>
                             <Column gap={1}>
-                                <Text variant="white">Canciones reproducidas por una Trax Machine</Text>
+                                <Text variant="white">{ LocalizeText('widget.memenu.settings.volume.trax') }</Text>
                                 <Flex alignItems="center" gap={1}>
                                     {(userSettings.volumeTrax === 0) && <FaVolumeMute className={classNames((userSettings.volumeTrax >= 50) && 'text-muted', 'fa-icon')} />}
                                     {(userSettings.volumeTrax > 0) && <FaVolumeDown className={classNames((userSettings.volumeTrax >= 50) && 'text-muted', 'fa-icon')} />}
@@ -252,31 +246,28 @@ export const UserSettingsView: FC<{}> = props =>
                         <div>
                             <div className="d-flex justify-content-between">
                                 <div>
-                                    <Text variant="white" bold fontSize={5}>Interfaz</Text>
-                                </div>
-                                <div>
-                                    <Text variant="white">Ajustes de interfaz</Text>
+                                    <Text variant="white" bold fontSize={5}>{ LocalizeText('widget.settings.interface.title') }</Text>
                                 </div>
                             </div>
                             <div className='w-100 mt-1 mb-3' style={{ borderBottom: "1px solid rgb(54, 54, 54)" }}></div>
-                            <button onClick={() => changeFps("30")} className="btn btn-sm w-100 btn-dark" style={{ marginBottom: "2px" }}>Cambiar a 30 FPS</button>
-                            <button onClick={() => changeFps("60")} className="btn btn-sm w-100 btn-dark" style={{ marginBottom: "2px" }}>Cambiar a 60 FPS</button>
-                            <button onClick={() => changeFps("120")} className="btn btn-sm w-100 btn-dark" style={{ marginBottom: "2px" }}>Cambiar a 120 FPS</button>
-                            <button onClick={() => changeFps("0")} className="btn btn-sm w-100 btn-dark">Deslimitar FPS</button>
+                            <button onClick={() => changeFps("30")} className="btn btn-sm w-100 btn-dark" style={{ marginBottom: "2px" }}>30 FPS</button>
+                            <button onClick={() => changeFps("60")} className="btn btn-sm w-100 btn-dark" style={{ marginBottom: "2px" }}>60 FPS</button>
+                            <button onClick={() => changeFps("120")} className="btn btn-sm w-100 btn-dark" style={{ marginBottom: "2px" }}>120 FPS</button>
+                            <button onClick={() => changeFps("0")} className="btn btn-sm w-100 btn-dark">{ LocalizeText('widget.settings.interface.fps.automatic') }</button>
                             <center>
-                                <span className='badge bg-muted text-dark mt-1'>Deslimitar los FPS puede producir bajones de rendimiento.</span>
+                                <span className='badge bg-muted text-dark mt-1'>{ LocalizeText('widget.settings.interface.fps.warning') }</span>
                             </center>
 
                             <Column gap={1} style={{ marginTop: "30px" }}>
                                 <div className="d-flex justify-content-between">
                                     <div>
-                                        <Text className='mt-1' variant="white" fontSize={6} bold>Color secundario</Text>
+                                        <Text className='mt-1' variant="white" fontSize={6} bold>{ LocalizeText('widget.settings.interface.secondary') }</Text>
                                     </div>
                                     <div>
                                         <input onChange={(e) => changeSecondaryColor(e.target.value)} className="form-control form-control-color" type="color" value={secondaryColor} />
                                     </div>
                                 </div>
-                                <button onClick={() => resetColors()} className="btn btn-danger btn-sm w-100 mt-2">Restear color secundario</button>
+                                <button onClick={() => resetColors()} className="btn btn-danger btn-sm w-50 mt-2">{ LocalizeText('widget.settings.interface.reset') }</button>
                             </Column>
                         </div>
                     }

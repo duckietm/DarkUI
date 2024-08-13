@@ -31,7 +31,7 @@ export const HelpIndexView: FC<{}> = props =>
                 <Text variant="white" >{ LocalizeText('help.main.self.description') }</Text>
             </Column>
             <Column gap={ 1 }>
-                <Button onClick={showEnables}>Lista de enables</Button>
+                <Button onClick={showEnables}>{ LocalizeText('widget.memenu.effects') }</Button>
                 <Button onClick={ onReportClick }>{ LocalizeText('help.main.bully.subtitle') }</Button>
                 <Button onClick={ () => DispatchUiEvent(new GuideToolEvent(GuideToolEvent.CREATE_HELP_REQUEST)) } disabled={ !GetConfiguration('guides.enabled') }>{ LocalizeText('help.main.help.title') }</Button>
                 <Button disabled={ true }>{ LocalizeText('help.main.self.tips.title') }</Button>
