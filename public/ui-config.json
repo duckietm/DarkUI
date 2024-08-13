@@ -25,6 +25,8 @@
 	"youtube.publish.disabled": false,
 	"radioplayer": true,
 	"stream.url": "https://playerservices.streamtheworld.com/api/livestream-redirect/RADIO538.mp3",
+	"enable-list.url": "http://192.168.0.8/gamedata/config/EffectMap.json?v=1",
+	"avatar.loading.url": "http://192.168.0.8/imaging/?figure=",
     "navigator.room.models": [{
             "clubLevel": 0,
             "tileSize": 104,
