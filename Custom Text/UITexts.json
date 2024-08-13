@@ -1,4 +1,5 @@
 {
+    "friendlist.search": "Zoek vrienden",
     "widget.chooser.checkall": "Selecteer meubels",
     "widget.chooser.btn.pickall": "pak de geselecteerde items op!",
     "gamecenter.players": "Spelers",
@@ -24,13 +25,13 @@
     "gamecenter.vote.room.wait": "De andere spelers zijn nu aan het stemmen op jou kamer, even geduld!",
     "wiredfurni.params.requireall.2": "Als een van de geselecteerde furni een avatar heeft",
     "wiredfurni.params.requireall.3": "Als alle geselecteerde furni avatars op hen hebben",
-	"widget.settings.general": "Standaard",
-	"widget.settings.general.title": "Pas de standaard nitro settings aan",
-	"widget.settings.volume": "Volume",
-	"widget.settings.interface": "Interface",
-	"widget.settings.interface.title": "Pas de settings aan voor de interface",
-	"widget.settings.interface.fps.automatic": "Zet FPS naar unlimited",
-	"widget.settings.interface.fps.warning": "Het zetten van FPS naar unlimited kan prestatie problemen veroorzaken!",
-	"widget.settings.interface.secondary": "Verander de window header kleur",
-	"widget.settings.interface.reset": "Reset header kleur naar default"
+    "widget.settings.general": "Standaard",
+    "widget.settings.general.title": "Pas de standaard nitro settings aan",
+    "widget.settings.volume": "Volume",
+    "widget.settings.interface": "Interface",
+    "widget.settings.interface.title": "Pas de settings aan voor de interface",
+    "widget.settings.interface.fps.automatic": "Zet FPS naar unlimited",
+    "widget.settings.interface.fps.warning": "Het zetten van FPS naar unlimited kan prestatie problemen veroorzaken!",
+    "widget.settings.interface.secondary": "Verander de window header kleur",
+    "widget.settings.interface.reset": "Reset header kleur naar default"
 }

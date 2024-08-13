@@ -171,7 +171,7 @@ export const FriendsListView: FC<{}> = props =>
             <NitroCardView className="nitro-friends" uniqueKey="nitro-friends">
                 <NitroCardHeaderView headerText={LocalizeText('friendlist.friends')} onCloseClick={() => setIsVisible(false)} />
                 <NitroCardTabsView>
-                    {['online', 'offline', 'requests', 'tip.search'].map(tab => (
+                    {['online', 'offline', 'requests', 'search'].map(tab => (
                         <NitroCardTabsItemView key={tab} onClick={() => setSection(tab)} isActive={section === tab}>
                             <Flex gap={0} alignItems="center">
                                 {LocalizeText(`friendlist.${tab}`)}
