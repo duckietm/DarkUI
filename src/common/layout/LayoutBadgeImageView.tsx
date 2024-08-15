@@ -93,7 +93,7 @@ export const LayoutBadgeImageView: FC<LayoutBadgeImageViewProps> = props =>
     return (
         <Base classNames={ getClassNames } style={ getStyle } { ...rest }>
             { (showInfo && GetConfiguration<boolean>('badge.descriptions.enabled', true)) &&
-                <Base className="badge-information text-black py-1 px-2 small">
+                <Base className="badge-information text-white py-1 px-2">
                     <div className="fw-bold mb-1">{ isGroup ? customTitle : LocalizeBadgeName(badgeCode) }</div>
                     <div>{ isGroup ? LocalizeText('group.badgepopup.body') : LocalizeBadgeDescription(badgeCode) }</div>
                 </Base> }
