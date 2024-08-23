@@ -154,14 +154,6 @@ const SideToolbarView: FC<{ isInRoom: boolean }> = ({ isInRoom }) => {
                 <Text variant="white" small bold center>{ LocalizeText("games.main.title") }</Text>
               </div>
             </div>
-            <div className='mb-2' onClick={() => CreateLinkEvent('battlepass/toggle')}>
-              <div className='text-center'>
-                <Base pointer className="navigation-item icon icon-battle nitro-toolbar-icon nitro-space-right sidebar-navigation-icon" />
-              </div>
-              <div className='w-100 text-center'>
-                <Text variant="white" small bold center>Battle pass</Text>
-              </div>
-            </div>
           </div>
         </div>
       </div>

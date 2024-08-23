@@ -46,7 +46,6 @@ export const ToolbarMeView: FC<PropsWithChildren<ToolbarMeViewProps>> = props =>
             <Base pointer className="navigation-item icon icon-me-rooms" onClick={ event => CreateLinkEvent('navigator/search/myworld_view') } />
             <Base pointer className="navigation-item icon icon-me-clothing" onClick={ event => CreateLinkEvent('avatar-editor/toggle') } />
             <Base pointer className="navigation-item icon icon-gamec" onClick={ event => CreateLinkEvent('gamecenter/show') } />
-            <Base pointer className="navigation-item icon icon-battle-pass" onClick={ event => CreateLinkEvent('battlepass/toggle') } />
             <Base pointer className="navigation-item icon icon-me-banners" onClick={ event => CreateLinkEvent('banners/show') } />
             <Base pointer className="navigation-item icon icon-me-settings" onClick={ event => CreateLinkEvent('user-settings/toggle') } />
             { children }
